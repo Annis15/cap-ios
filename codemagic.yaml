@@ -1,0 +1,22 @@
+workflows:
+  cap-ios-check:
+    name: Cap iOS - première compilation
+    instance_type: mac_mini_m2
+    max_build_duration: 20
+    environment:
+      xcode: latest
+    scripts:
+      - name: Générer le projet Xcode
+        script: |
+          set -e
+          command -v xcodegen >/dev/null || brew install xcodegen
+          xcodegen generate --spec project.yml
+      - name: Compiler Cap pour iOS
+        script: |
+          set -euo pipefail
+          mkdir -p build
+          xcodebuild -project Cap.xcodeproj -scheme Cap -configuration Debug \
+            -destination 'generic/platform=iOS' -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO build | tee build/xcodebuild.log
+    artifacts:
+      - build/xcodebuild.log
