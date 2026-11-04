@@ -7,7 +7,7 @@ targets:
   Cap:
     type: application
     platform: iOS
-    sources: [App]
+    sources: [CapApp.swift, ContentView.swift]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: fr.cap.suivi
