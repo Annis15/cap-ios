@@ -7,13 +7,20 @@ targets:
   Cap:
     type: application
     platform: iOS
-    sources: [CapApp.swift, ContentView.swift]
+    sources:
+      - CapApp.swift
+      - ContentView.swift
+      - path: Assets.xcassets
+        buildPhase: resources
+      - path: PrivacyInfo.xcprivacy
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: fr.cap.suivi
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Cap
@@ -26,3 +33,4 @@ schemes:
     build:
       targets:
         Cap: all
+
